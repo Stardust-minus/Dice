@@ -60,7 +60,7 @@ void jobHandle() {
 				AttrObject job{ queueJob.front() };
 				queueJob.pop();
 				//lock_queue.unlock();
-				std::thread task{ exec,job };
+				std::thread task{ exec, std::ref(job) };
 				task.detach();
 				//lock_queue.lock();
 				//cvJobWaited.notify_one();
